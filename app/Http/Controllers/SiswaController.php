@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Siswa;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class SiswaController extends Controller {
@@ -16,8 +14,9 @@ class SiswaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $siswa = new Siswa();
-        return $siswa->all();
+//        $siswa = new Siswa();
+//        return $siswa->all();
+        return Siswa::paginate(2);
     }
 
     /**
@@ -83,13 +82,6 @@ class SiswaController extends Controller {
             'nama' => $request->input('nama'),
             'jurusan' => $request->input('jurusan')
         ]);
-//        DB::table('siswas')
-//                ->where('id', $id)
-//                ->update([
-//                   'nis' => $request->input('nis'),
-//                   'nama' => $request->input('nama'), 
-//                   'jurusan' => $request->input('jurusan')
-//                ]);
 
         return response('Success', 200);
     }
