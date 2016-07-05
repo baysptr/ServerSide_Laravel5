@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Siswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class SiswaController extends Controller
-{
+class SiswaController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $siswa = new Siswa();
         return $siswa->all();
     }
@@ -25,8 +25,7 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -36,16 +35,15 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $siswa = new Siswa;
-        
+
         $siswa->nis = $request->input('nis');
         $siswa->nama = $request->input('nama');
         $siswa->jurusan = $request->input('jurusan');
-        
+
         $siswa->save();
-        
+
         return response('Success', 200);
     }
 
@@ -55,8 +53,7 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -66,8 +63,7 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $siswa = new Siswa;
         return $siswa->find($id);
     }
@@ -79,24 +75,22 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-//        $siswa = new Siswa;
-//        
-//        $siswa->id = $id;
-//        $siswa->nis = $request->input('nis');
-//        $siswa->nama = $request->input('nama');
-//        $siswa->jurusan = $request->input('jurusan');
-//        
-//        $siswa->update();
-        DB::table('siswas')
-                ->where('id', $id)
-                ->update([
-                   'nis' => $request->input('nis'),
-                   'nama' => $request->input('nama'), 
-                   'jurusan' => $request->input('jurusan')
-                ]);
-        
+    public function update(Request $request, $id) {
+        $siswa = new Siswa;
+
+        $siswa->where('id', $id)->update([
+            'nis' => $request->input('nis'),
+            'nama' => $request->input('nama'),
+            'jurusan' => $request->input('jurusan')
+        ]);
+//        DB::table('siswas')
+//                ->where('id', $id)
+//                ->update([
+//                   'nis' => $request->input('nis'),
+//                   'nama' => $request->input('nama'), 
+//                   'jurusan' => $request->input('jurusan')
+//                ]);
+
         return response('Success', 200);
     }
 
@@ -106,10 +100,10 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         Siswa::destroy($id);
-        
+
         return response('Success', 200);
     }
+
 }
