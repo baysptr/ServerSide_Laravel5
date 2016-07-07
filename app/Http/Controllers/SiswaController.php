@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Siswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class SiswaController extends Controller {
 
@@ -13,10 +14,14 @@ class SiswaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-//        $siswa = new Siswa();
-//        return $siswa->all();
-        return Siswa::paginate(2);
+    public function index(Request $request) {
+        if($request->get('search')){
+            $siswa = Siswa::where("nama", "LIKE", "%{$request->get('search')}%")
+                ->paginate(2);      
+        }else{
+		  $siswa = Siswa::paginate(2);
+        }
+        return response($siswa);
     }
 
     /**
