@@ -1,2 +1,5 @@
-# ServerSide_Laravel5
-make API REST on Laravel With integration AngularJS (ClientSide/FrontEnd)
+#install server side
+Move folder Server-side in root folder
+Open command prompt/terminal on folder Server-side
+###php artisan key:generate
+###php artisan serve
